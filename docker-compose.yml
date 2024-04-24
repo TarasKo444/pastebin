@@ -1,0 +1,6 @@
+﻿services:
+  pastebin.api:
+    image: pastebin.api
+    build:
+      context: .
+      dockerfile: Pastebin.Api/Dockerfile
