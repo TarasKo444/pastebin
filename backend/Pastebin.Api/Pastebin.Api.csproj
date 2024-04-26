@@ -8,7 +8,17 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="ErrorOr" Version="2.0.1" />
+        <PackageReference Include="FluentValidation" Version="11.9.1" />
+        <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.9.1" />
+        <PackageReference Include="Mapster" Version="7.4.0" />
+        <PackageReference Include="MediatR" Version="12.2.0" />
+        <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.4" />
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.2"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.4">
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0"/>
     </ItemGroup>
 
@@ -16,6 +26,12 @@
       <Content Include="..\.dockerignore">
         <Link>.dockerignore</Link>
       </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Pastebin.Application\Pastebin.Application.csproj" />
+      <ProjectReference Include="..\Pastebin.Common\Pastebin.Common.csproj" />
+      <ProjectReference Include="..\Pastebin.Infrastructure\Pastebin.Infrastructure.csproj" />
     </ItemGroup>
 
 </Project>
