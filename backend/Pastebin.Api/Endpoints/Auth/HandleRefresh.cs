@@ -12,7 +12,7 @@ namespace Pastebin.Api.Endpoints.Auth;
 
 public class HandleRefresh : IModule
 {
-    public async Task<IResult> Handle(
+    public static async Task<IResult> Handle(
         HttpContext httpContext,
         [FromServices] ISender sender,
         [FromServices] IOptions<JwtOptions> jwtOptions,

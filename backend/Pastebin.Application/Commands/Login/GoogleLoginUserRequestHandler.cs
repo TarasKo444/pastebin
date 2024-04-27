@@ -2,6 +2,7 @@
 using Mapster;
 using MediatR;
 using Microsoft.Extensions.Options;
+using Pastebin.Common;
 using Pastebin.Common.Options;
 using Pastebin.Domain.Entities;
 using Pastebin.Infrastructure;
@@ -60,7 +61,7 @@ public class GoogleLoginUserRequestHandler(
             user.Picture = request.Picture;
         }
 
-        var refreshToken = _jwtService.GenerateRefreshToken();
+        var refreshToken = Hasher.GenerateHash(64);
 
         user.RefreshToken = _jwtService.Hash(refreshToken);
         user.RefreshTokenExpiryTime = DateTime.UtcNow.AddDays(_jwtOptions.Value.RefreshTokenExpiryTimeInDays);

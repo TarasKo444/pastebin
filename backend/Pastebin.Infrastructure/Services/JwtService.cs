@@ -38,14 +38,6 @@ public class JwtService(IOptions<JwtOptions> jwtOptions)
         return new JwtSecurityTokenHandler().WriteToken(tokenOptions);
     }
 
-    public string GenerateRefreshToken()
-    {
-        var randomNumber = new byte[64];
-        using var rng = RandomNumberGenerator.Create();
-        rng.GetBytes(randomNumber);
-        return Convert.ToBase64String(randomNumber);
-    }
-
     public string Hash(string str) =>
         Convert.ToBase64String(SHA256.HashData(Encoding.UTF8.GetBytes(str + _jwtOptions.Value.HashKey)));
 

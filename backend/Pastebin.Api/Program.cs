@@ -15,6 +15,7 @@ builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddApplication();
 
 builder.Services.AddTransient<CookieService>();
+builder.Services.AddScoped<UserContext>();
 builder.Services.AddHttpContextAccessor();
 
 builder.Services.Configure<JwtOptions>(builder.Configuration.GetSection("JwtSettings"));

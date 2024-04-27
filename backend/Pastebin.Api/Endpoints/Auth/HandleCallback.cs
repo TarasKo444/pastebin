@@ -12,7 +12,7 @@ namespace Pastebin.Api.Endpoints.Auth;
 
 public class HandleCallback : IModule
 {
-    public async Task<IResult> HandleAsync(
+    public static async Task<IResult> HandleAsync(
         [FromServices] ExternalAuthService externalAuthService,
         [FromServices] IOptions<JwtOptions> jwtOptions,
         [FromServices] CookieService cookieService,

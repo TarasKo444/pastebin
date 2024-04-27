@@ -2,6 +2,7 @@
 using Mapster;
 using MediatR;
 using Microsoft.Extensions.Options;
+using Pastebin.Common;
 using Pastebin.Common.Options;
 using Pastebin.Infrastructure;
 using Pastebin.Infrastructure.Services;
@@ -43,7 +44,7 @@ public class LoginUserRequestHandler(
             return (Error.Failure(description: "given email or password is wrong"), "", "");
 
 
-        var refreshToken = _jwtService.GenerateRefreshToken();
+        var refreshToken = Hasher.GenerateHash(64);
 
         userExists.RefreshToken = _jwtService.Hash(refreshToken);
         userExists.RefreshTokenExpiryTime = DateTime.UtcNow.AddDays(_jwtOptions.Value.RefreshTokenExpiryTimeInDays);

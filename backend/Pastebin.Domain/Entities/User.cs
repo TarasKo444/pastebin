@@ -11,4 +11,6 @@ public class User
     public string Email { get; set; } = null!;
     public string RefreshToken { get; set; } = null!;
     public DateTime RefreshTokenExpiryTime { get; set; }
+
+    public ICollection<Paste> Pastes { get; set; } = [];
 }

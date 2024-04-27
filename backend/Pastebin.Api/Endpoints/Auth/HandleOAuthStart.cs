@@ -6,7 +6,7 @@ namespace Pastebin.Api.Endpoints.Auth;
 
 public class HandleOAuthStart : IModule
 {
-    public IResult Handle(
+    public static IResult Handle(
         HttpContext httpContext,
         [FromServices] ExternalAuthService externalAuthService)
     {

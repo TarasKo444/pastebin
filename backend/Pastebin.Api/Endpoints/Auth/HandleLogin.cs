@@ -26,7 +26,7 @@ public class HandleLogin : IModule
         }
     }
 
-    public async Task<IResult> Handle(
+    public static async Task<IResult> Handle(
         HttpContext httpContext,
         [FromBody] LoginRequest? request,
         [FromServices] IValidator<LoginRequest> validator,

@@ -31,7 +31,7 @@ public class HandleRegister : IModule
         }
     }
     
-    public async Task<IResult> Handle(
+    public static async Task<IResult> Handle(
         HttpContext httpContext,
         [FromServices] ISender sender,
         [FromServices] IOptions<JwtOptions> jwtOptions,

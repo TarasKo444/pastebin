@@ -1,6 +1,7 @@
 ﻿using ErrorOr;
 using MediatR;
 using Microsoft.Extensions.Options;
+using Pastebin.Common;
 using Pastebin.Common.Options;
 using Pastebin.Infrastructure;
 using Pastebin.Infrastructure.Services;
@@ -66,7 +67,7 @@ public class RefreshTokenRequestHandler(
         var response = new RefreshTokenResponse
         {
             AccessToken = _jwtService.GenerateToken(user),
-            RefreshToken = _jwtService.GenerateRefreshToken()
+            RefreshToken = Hasher.GenerateHash(64)
         };
 
         user.RefreshToken = _jwtService.Hash(response.RefreshToken);

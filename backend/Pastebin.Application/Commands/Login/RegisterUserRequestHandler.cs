@@ -2,6 +2,7 @@
 using Mapster;
 using MediatR;
 using Microsoft.Extensions.Options;
+using Pastebin.Common;
 using Pastebin.Common.Options;
 using Pastebin.Domain.Entities;
 using Pastebin.Infrastructure;
@@ -42,7 +43,7 @@ public class RegisterUserRequestHandler(
         if (userExists is not null)
             return (Error.Failure(description: "user with given email already exists"), "", "");
 
-        var refreshToken = _jwtService.GenerateRefreshToken();
+        var refreshToken = Hasher.GenerateHash(64);
 
         var user = new User
         {
