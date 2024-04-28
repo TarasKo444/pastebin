@@ -26,6 +26,7 @@ public class AppDbContext(DbContextOptions options) : DbContext(options)
             paste.Property(p => p.CreatorId).IsRequired(false);
             paste.Property(p => p.Text).IsRequired();
             paste.Property(p => p.Title).IsRequired();
+            paste.Property(p => p.ExpirationTime).IsRequired(false);
             paste.HasOne(p => p.Creator)
                 .WithMany(u => u.Pastes)
                 .HasForeignKey(p => p.CreatorId);

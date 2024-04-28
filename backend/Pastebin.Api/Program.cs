@@ -1,8 +1,11 @@
 using System.Text;
 using FluentValidation;
+using Hangfire;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
 using Microsoft.IdentityModel.Tokens;
 using Pastebin.Api.Extensions;
+using Pastebin.Api.JsonConverters;
 using Pastebin.Api.Middlewares;
 using Pastebin.Api.Services;
 using Pastebin.Application;
@@ -13,6 +16,13 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddApplication();
+
+builder.Services.ConfigureHttpJsonOptions(options =>
+{
+    options.SerializerOptions.Converters.Add(new DateTimeOffsetJsonConverter());
+});
+
+AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 
 builder.Services.AddTransient<CookieService>();
 builder.Services.AddScoped<UserContext>();
@@ -29,6 +39,11 @@ builder.Services.RegisterModules();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddStackExchangeRedisCache(options => {
+    options.Configuration = "localhost";
+    options.InstanceName = "local";
+});
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
@@ -55,11 +70,12 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+    app.MapHangfireDashboard();
 }
 
 app.UseHttpsRedirection();
 
-app.UseCustomExceptionHandler();
+//app.UseCustomExceptionHandler();
 
 app.UseAuthentication();
 app.UseAuthorization();
@@ -68,5 +84,4 @@ var apiGroup = app.MapGroup("api");
 apiGroup.MapEndpoints();
 
 app.MapGet("test", () => "Auth is working!").RequireAuthorization();
-
 app.Run();

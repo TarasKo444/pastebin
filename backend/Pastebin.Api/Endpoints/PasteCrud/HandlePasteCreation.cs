@@ -1,12 +1,15 @@
-﻿using System.Security.Claims;
+﻿using System.Globalization;
+using System.Security.Claims;
 using FluentValidation;
 using Mapster;
 using MediatR;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using Pastebin.Api.Exceptions;
 using Pastebin.Api.Extensions;
+using Pastebin.Api.JsonConverters;
 using Pastebin.Api.Services;
 using Pastebin.Application.Commands.Paste;
 
@@ -37,7 +40,10 @@ public class HandlePasteCreation : IModule
             userId = Guid.Parse(value);
         }
 
-        var result = await sender.Send(request.Adapt<CreatePasteRequest>() with { CreatorId = userId });
+        var result = await sender.Send(request.Adapt<CreatePasteRequest>() with
+        {
+            CreatorId = userId
+        });
 
         if (!result.IsError) return Results.Json(result.Value);
 
@@ -55,7 +61,8 @@ public class HandlePasteCreation : IModule
     {
         public string? Text { get; set; }
         public string? Title { get; set; }
-
+        [JsonConverter(typeof(DateTimeOffsetJsonConverter))]
+        public DateTimeOffset? ExpirationTime { get; set; }
 
         public class Validator : AbstractValidator<CreateRequest>
         {
