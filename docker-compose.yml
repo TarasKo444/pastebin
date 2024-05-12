@@ -3,4 +3,37 @@
     image: pastebin.api
     build:
       context: .
-      dockerfile: Pastebin.Api/Dockerfile
+      dockerfile: backend/Pastebin.Api/Dockerfile
+    ports:
+      - "8080:8080"
+    networks:
+      - mynetwork
+      
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: root
+      POSTGRES_USER: postgres
+      POSTGRES_DB: pastebindb
+    ports:
+      - 5432:5432
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - mynetwork
+    
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8081:8080
+    networks:
+      - mynetwork
+
+volumes:
+  pgdata:
+
+networks:
+  mynetwork:
+    driver: bridge

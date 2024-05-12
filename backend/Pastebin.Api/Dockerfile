@@ -7,10 +7,14 @@ EXPOSE 8081
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["Pastebin.Api/Pastebin.Api.csproj", "Pastebin.Api/"]
-RUN dotnet restore "Pastebin.Api/Pastebin.Api.csproj"
+COPY ["backend/Pastebin.Api/Pastebin.Api.csproj", "backend/Pastebin.Api/"]
+COPY ["backend/Pastebin.Application/Pastebin.Application.csproj", "backend/Pastebin.Application/"]
+COPY ["backend/Pastebin.Infrastructure/Pastebin.Infrastructure.csproj", "backend/Pastebin.Infrastructure/"]
+COPY ["backend/Pastebin.Common/Pastebin.Common.csproj", "backend/Pastebin.Common/"]
+COPY ["backend/Pastebin.Domain/Pastebin.Domain.csproj", "backend/Pastebin.Domain/"]
+RUN dotnet restore "backend/Pastebin.Api/Pastebin.Api.csproj"
 COPY . .
-WORKDIR "/src/Pastebin.Api"
+WORKDIR "/src/backend/Pastebin.Api"
 RUN dotnet build "Pastebin.Api.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish

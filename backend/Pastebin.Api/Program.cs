@@ -73,9 +73,7 @@ if (app.Environment.IsDevelopment())
     app.MapHangfireDashboard();
 }
 
-app.UseHttpsRedirection();
-
-//app.UseCustomExceptionHandler();
+app.UseCustomExceptionHandler();
 
 app.UseAuthentication();
 app.UseAuthorization();

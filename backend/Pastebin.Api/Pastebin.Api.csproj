@@ -24,12 +24,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Content Include="..\.dockerignore">
-        <Link>.dockerignore</Link>
-      </Content>
-    </ItemGroup>
-
-    <ItemGroup>
       <ProjectReference Include="..\Pastebin.Application\Pastebin.Application.csproj" />
       <ProjectReference Include="..\Pastebin.Common\Pastebin.Common.csproj" />
       <ProjectReference Include="..\Pastebin.Infrastructure\Pastebin.Infrastructure.csproj" />
