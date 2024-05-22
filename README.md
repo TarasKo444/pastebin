@@ -24,4 +24,4 @@ My copy of popular Pastebin (https://pastebin.com/)
   },
 </pre>
 <h1>Screenshots</h1>
-![img.png](img.png)
+<img src="img.png">
