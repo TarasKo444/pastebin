@@ -41,8 +41,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddStackExchangeRedisCache(options => {
-    options.Configuration = "localhost";
-    options.InstanceName = "local";
+    options.Configuration = "redis";
 });
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)

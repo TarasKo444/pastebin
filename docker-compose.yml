@@ -30,7 +30,19 @@
       - 8081:8080
     networks:
       - mynetwork
-
+  
+  redis:
+    image: redis:latest
+    restart: always
+    ports:
+      - "6379:6379"
+    volumes:
+      - /path/to/local/dаta:/root/redis
+      - /path/to/local/redis.conf:/usr/local/etc/redis/redis.conf
+    networks:
+      - mynetwork
+    environment:
+      - REDIS_PORT=6379
 volumes:
   pgdata:
 
