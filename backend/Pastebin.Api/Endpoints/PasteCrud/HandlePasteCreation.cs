@@ -45,10 +45,13 @@ public class HandlePasteCreation : IModule
             CreatorId = userId
         });
 
-        if (!result.IsError) return Results.Json(result.Value);
-
-        var error = result.FirstError;
-        return CustomResults.ErrorJson(error.Type, [error]);
+        if (result.IsError)
+        {
+            var error = result.FirstError;
+            return CustomResults.ErrorJson(error.Type, [error]);
+        }
+        
+        return Results.Json(result.Value);
     }
 
     public IEndpointRouteBuilder MapEndpoints(IEndpointRouteBuilder endpoints)

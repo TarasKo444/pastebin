@@ -26,6 +26,7 @@ public record CreatePasteResponse
     public required string Text { get; set; }
     public required string Title { get; set; }
     public DateTimeOffset? ExpirationTime { get; set; }
+    public DateTimeOffset CreatedAt { get; set; }
     public Guid? CreatorId { get; set; }
 }
 
@@ -58,7 +59,8 @@ public class CreatePasteRequestHandler(
 
         var paste = request.Adapt<Domain.Entities.Paste>();
         paste.Id = Hasher.GenerateAlphabeticString(8);
-
+        paste.CreatedAt = DateTimeOffset.Now;
+        
         await _appDbContext.Pastes.AddAsync(paste, cancellationToken);
         await _appDbContext.SaveChangesAsync(cancellationToken);
         
