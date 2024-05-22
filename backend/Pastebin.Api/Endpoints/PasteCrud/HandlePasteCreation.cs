@@ -72,7 +72,6 @@ public class HandlePasteCreation : IModule
             public Validator()
             {
                 RuleFor(x => x.Text).NotEmpty();
-                RuleFor(x => x.Title).NotEmpty();
             }
         }
     }
