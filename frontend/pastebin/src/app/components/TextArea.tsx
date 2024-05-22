@@ -1,9 +1,11 @@
 export const TextArea = ({ className }: { className?: string }) => {
   return (
-    <textarea
-      id="message"
-      rows={3}
-      className={`${className} block p-2.5 w-full text-xs text-gray-900 bg-gray-50 rounded-lg borderborder-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`}
-    ></textarea>
+    <div>
+      <textarea
+        id="message"
+        rows={3}
+        className={`${className} focus:outline-none block p-2.5 w-full text-xs text-gray-900 rounded-lg border border-gray-300 dark:bg-[#202324] dark:text-white`}
+      ></textarea>
+    </div>
   );
 };

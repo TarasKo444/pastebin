@@ -2,7 +2,7 @@ import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 
 export const SelectExpiration = ({ className }: { className?: string }) => {
   return (
-    <>
+    <div>
       <FormControl className={`${className ?? 'min-w-56'}`}>
         <InputLabel id="demo-simple-select-label">Expiration time</InputLabel>
         <Select
@@ -23,6 +23,6 @@ export const SelectExpiration = ({ className }: { className?: string }) => {
           <MenuItem value={110}>1 Year</MenuItem>
         </Select>
       </FormControl>
-    </>
+    </div>
   );
 };
