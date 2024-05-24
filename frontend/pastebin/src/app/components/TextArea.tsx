@@ -16,7 +16,7 @@ export const TextArea = ({
         value={value}
         autoCorrect="off"
         spellCheck="false" 
-        autocapitalize="off"
+        autoCapitalize="off"
         readOnly={readonly}
       ></textarea>
     </div>
