@@ -1,6 +1,5 @@
 "use client";
 
-import { MainLayout } from "@/app/components/MainLayout";
 import { Api } from "@/app/services/api";
 import { useEffect, useState } from "react";
 

@@ -14,6 +14,9 @@ export const TextArea = ({
         rows={3}
         className={`${className} focus:outline-none block p-2.5 w-full text-xs text-gray-900 rounded-lg border border-gray-300 dark:bg-[#202324] dark:text-white`}
         value={value}
+        autoCorrect="off"
+        spellCheck="false" 
+        autocapitalize="off"
         readOnly={readonly}
       ></textarea>
     </div>
