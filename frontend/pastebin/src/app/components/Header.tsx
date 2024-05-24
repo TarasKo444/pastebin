@@ -1,4 +1,4 @@
-import { AppBar, IconButton, Toolbar, Typography } from "@mui/material";
+import { AppBar, Button, IconButton, Toolbar, Typography } from "@mui/material";
 import { IoIosMenu } from "react-icons/io";
 
 type Props = {};
@@ -6,7 +6,11 @@ type Props = {};
 export const Header = (props: Props) => {
   return (
     <div>
-      <AppBar className="pl-[14%] shadow-none" color="transparent" position="static">
+      <AppBar
+        className="pl-[14%] shadow-none"
+        color="transparent"
+        position="static"
+      >
         <Toolbar variant="dense">
           <IconButton
             edge="start"
@@ -16,9 +20,11 @@ export const Header = (props: Props) => {
           >
             <IoIosMenu />
           </IconButton>
-          <Typography variant="h6" color="inherit" component="div">
-            PASTEBIN
-          </Typography>
+          <Button href="/">
+            <Typography variant="h6" color="inherit" component="div">
+              PASTEBIN
+            </Typography>
+          </Button>
         </Toolbar>
       </AppBar>
     </div>

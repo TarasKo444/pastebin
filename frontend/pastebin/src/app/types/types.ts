@@ -5,3 +5,8 @@
   expirationTime: string;
   createdAt: string;
 }
+
+interface ApiError {
+  status: number;
+  errors: string[];
+}
