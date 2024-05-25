@@ -63,14 +63,19 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 builder.Services.AddAuthorization();
 
-builder.Services.AddCors();
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(configure =>
+    {
+        configure.WithOrigins("http://localhost:3000")
+            .AllowAnyMethod()
+            .AllowAnyHeader();
+    });
+});
 
 var app = builder.Build();
 
-app.UseCors(b => b
-    .AllowAnyOrigin()
-    .AllowAnyMethod()
-    .AllowAnyHeader());
+app.UseCors();
 
 if (app.Environment.IsDevelopment())
 {

@@ -42,7 +42,7 @@ public class GetPasteByIdRequestHandler(AppDbContext appDbContext, IDistributedC
         var paste = await _appDbContext.Pastes.FirstOrDefaultAsync(p => p.Id == request.Id, cancellationToken);
 
         if (paste is null)
-            return Error.Failure(description: "Paste with given id not found");
+            return Error.NotFound(description: "Paste with given id not found");
 
         var response = paste.Adapt<GetPasteByIdResponse>();
         await _cache.SetStringAsync(response.Id, JsonSerializer.Serialize(response), new()

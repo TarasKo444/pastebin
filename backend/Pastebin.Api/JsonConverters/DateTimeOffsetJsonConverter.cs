@@ -11,12 +11,12 @@ public class DateTimeOffsetJsonConverter : JsonConverter<DateTimeOffset>
         Type typeToConvert,
         JsonSerializerOptions options) =>
         DateTimeOffset.ParseExact(reader.GetString()!,
-            "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture);
+            "yyyy-MM-dd HH:mm:ss zzz", CultureInfo.InvariantCulture);
 
     public override void Write(
         Utf8JsonWriter writer,
         DateTimeOffset dateTimeValue,
         JsonSerializerOptions options) =>
         writer.WriteStringValue(dateTimeValue.ToString(
-            "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture));
+            "yyyy-MM-dd HH:mm:ss zzz", CultureInfo.InvariantCulture));
 }

@@ -59,7 +59,7 @@ public class CreatePasteRequestHandler(
 
         var paste = request.Adapt<Domain.Entities.Paste>();
         paste.Id = Hasher.GenerateAlphabeticString(8);
-        paste.CreatedAt = DateTimeOffset.Now;
+        paste.CreatedAt = DateTimeOffset.UtcNow;
         
         await _appDbContext.Pastes.AddAsync(paste, cancellationToken);
         await _appDbContext.SaveChangesAsync(cancellationToken);
