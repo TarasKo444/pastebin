@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { MainLayout } from "../components/MainLayout";
-import { Api } from "../services/api";
+import { api } from "../services/api";
 import { TextArea } from "../components/TextArea";
 import { Alert, Button } from "@mui/material";
 
@@ -11,7 +11,7 @@ export default function Page({ params }: { params: { id: string } }) {
   const [error, setError] = useState<ApiError>();
 
   useEffect(() => {
-    Api.getPaste(params.id)
+    api.getPaste(params.id)
       .then((res) => {
         if (res.status == 200) {
           setPaste(res.data);

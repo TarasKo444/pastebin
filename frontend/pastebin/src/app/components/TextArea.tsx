@@ -2,10 +2,12 @@ export const TextArea = ({
   className,
   value,
   readonly,
+  name
 }: {
   className?: string;
   value?: string;
   readonly?: boolean;
+  name?: string;
 }) => {
   return (
     <div>
@@ -16,8 +18,9 @@ export const TextArea = ({
         value={value}
         autoCorrect="off"
         spellCheck="false" 
-        autoCapitalize="off"
+        autoCapitalize="none"
         readOnly={readonly}
+        name={name}
       ></textarea>
     </div>
   );
