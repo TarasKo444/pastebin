@@ -1,6 +1,7 @@
 "use client";
 
 import { api } from "@/app/services/api";
+import { Alert } from "@mui/material";
 import { useEffect, useState } from "react";
 
 export default function Page({ params }: { params: { id: string } }) {
@@ -19,9 +20,13 @@ export default function Page({ params }: { params: { id: string } }) {
       });
   }, [params.id]);
 
+  console.log(paste?.text);
+  
+  
   return (
     <>
-      <span>{paste?.text}</span>
+      {error && <Alert severity="error">{error.errors[0]}</Alert>}
+      <pre>{paste?.text}</pre>
     </>
   );
 }

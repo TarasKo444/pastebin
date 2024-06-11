@@ -18,7 +18,6 @@ export const Header = (props: Props) => {
             aria-label="menu"
             sx={{ mr: 2 }}
           >
-            <IoIosMenu />
           </IconButton>
           <Button href="/">
             <Typography variant="h6" color="inherit" component="div">

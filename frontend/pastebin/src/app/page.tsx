@@ -11,7 +11,7 @@ import { api } from "./services/api";
 import { useRouter } from "next/navigation";
 
 export default function Home() {
-  const router = useRouter()
+  const router = useRouter();
 
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -21,15 +21,18 @@ export default function Home() {
     var txt = JSON.stringify(object);
     var dto: PastePostDto = JSON.parse(txt);
     dto.expirationTime = dto.expirationTime == "" ? null : dto.expirationTime;
-    
+
     console.log(dto);
-    
-    await api.createPaste(dto).then((res) => {
-      if (res.status == 200) {
-        console.log(res.data);
-        router.push(`/${res.data.id}`)
-      }
-    }).catch(console.log);
+
+    await api
+      .createPaste(dto)
+      .then((res) => {
+        if (res.status == 200) {
+          console.log(res.data);
+          router.push(`/${res.data.id}`);
+        }
+      })
+      .catch(console.log);
   }
 
   return (
@@ -61,16 +64,11 @@ export default function Home() {
                 <PiUserCircleFill className="w-auto h-[100px]" />
                 <div className="*:mt-3">
                   <p>Hello Guest</p>
-                  <div className="flex *:p-1">
-                    <Button variant="contained">Register</Button>
-                    <p>or</p>
-                    <Button variant="contained">Login</Button>
-                  </div>
+                  <Button color="error" variant="contained">
+                    Sign in with Google
+                  </Button>
                 </div>
               </div>
-              <Button color="error" variant="contained" className="w-[300px]">
-                Sign in with Google
-              </Button>
             </div>
           </div>
         </form>

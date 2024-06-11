@@ -7,7 +7,12 @@ export class api {
   static getPaste(id: string) {
     return axios.get(`paste/${id}`);
   }
+  
   static createPaste(paste: PastePostDto) {
     return axios.post("paste", paste);
+  }
+  
+  static getTopRecentPastes(count: number) {
+    return axios.get(`paste/recent?count=${count}`);
   }
 }

@@ -61,7 +61,11 @@ export const SelectExpiration = ({
     <div>
       <FormControl className={`${className ?? "min-w-56"}`}>
         <InputLabel id="demo-simple-select-label">Expiration time</InputLabel>
-        <input type='hidden' value={calculateExpirationDate(expirationValue)} name={name}></input>
+        <input
+          type="hidden"
+          value={calculateExpirationDate(expirationValue)}
+          name={name}
+        ></input>
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
